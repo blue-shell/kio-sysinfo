@@ -1,0 +1,18 @@
+This is a sysinfo:/ KIO slave for KDE4, which shows basic
+system information often requested by users.
+
+The code was originally from http://svn.opensuse.org/svn/kio_sysinfo
+
+Patches and feedback greatly appreciated.
+
+You can enable distro-specific paths with sth like:
+cmake -DCMAKE_INSTALL_PREFIX=$KDEDIR -DSYSINFO_DISTRO:STRING=distro .
+
+Currently supported distros are:
+- fedora
+- suse
+- mandriva
+- debian
+
+Dirk Mueller <dmueller@suse.de>
+Lukas Tinkl <ltinkl@redhat.com>

@@ -1,0 +1,26 @@
+/* Cell with disk icon */
+h2#hdds+table td[rowspan]:first-child {
+    vertical-align: middle;
+}
+
+/* Cell with eject icon */
+h2#hdds+table td[rowspan]:last-child {
+    padding: 0 0 1px 2px;
+    vertical-align: bottom;
+}
+
+.bar .filled {
+    display: inline-block;
+    text-align: right;
+    color: white;
+}
+.bar .filled:after {
+    display: inline-block;
+    content: "";
+    width: 3px;
+}
+.bar .filled + span {
+    margin-left: 3px;
+    text-align: left;
+    color: black;
+}
