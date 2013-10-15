@@ -13,6 +13,7 @@ Currently supported distros are:
 - suse
 - mandriva
 - debian
+- ubuntu
 
 Dirk Mueller <dmueller@suse.de>
 Lukas Tinkl <ltinkl@redhat.com>
