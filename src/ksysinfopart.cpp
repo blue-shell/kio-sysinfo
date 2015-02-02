@@ -97,7 +97,8 @@ KSysinfoPart::KSysinfoPart( QWidget * parent )
     rescanTimer=new QTimer(this);
     connect(rescanTimer, SIGNAL(timeout()), SLOT(rescan()));
     rescanTimer->setSingleShot(true);
-    rescanTimer->start(20000);
+    // Disable reloading as requested
+    // rescanTimer->start(20000);
     setJScriptEnabled(false);
     setJavaEnabled(false);
     setPluginsEnabled(false);
@@ -274,4 +275,3 @@ void KSysinfoPart::FilesChanged( const KUrl::List & urls )
 #endif
 
 #include "ksysinfopart.moc"
-
