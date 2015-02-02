@@ -1,6 +1,8 @@
 This is a sysinfo:/ KIO slave for KDE4, which shows basic
 system information often requested by users.
 
+Patched: plasma5 string + no more page reload
+
 The code was originally from http://svn.opensuse.org/svn/kio_sysinfo
 
 Patches and feedback greatly appreciated.
