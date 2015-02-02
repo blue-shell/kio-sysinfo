@@ -58,6 +58,8 @@
 #include <kglobalsettings.h>
 #include <kmountpoint.h>
 #include <kcomponentdata.h>
+#include <KDesktopFile>
+#include <KConfigGroup>
 
 #include <solid/networking.h>
 #include <solid/device.h>
@@ -188,7 +190,11 @@ void kio_sysinfoProtocol::get( const KUrl & /*url*/ )
                htmlQuote(m_info[OS_RELEASE]) + " " + htmlQuote(m_info[OS_MACHINE]) + "</td></tr>";
 //     sysInfo += "<tr><td>" + i18n( "Current user:" ) + "</td><td>" + htmlQuote(m_info[OS_USER]) + "@"
 //                + htmlQuote(m_info[OS_HOSTNAME]) + "</td></tr>";
-    sysInfo += "<tr><td>" + i18n( "KDE:" ) + "</td><td>" + KDE::versionString() + "</td></tr>";
+    //TODO: Don't hardcode the filename here
+    const QString filePath("/usr/share/xsessions/plasma.desktop");
+    KDesktopFile desktopFile(filePath);
+    QString plasmaVersion = desktopFile.desktopGroup().readEntry("X-KDE-PluginInfo-Version", KDE::versionString());
+    sysInfo += "<tr><td>" + i18n( "Plasma:" ) + "</td><td>" + plasmaVersion + "</td></tr>";
     sysInfo += "</table>";
 
     // OpenGL info
