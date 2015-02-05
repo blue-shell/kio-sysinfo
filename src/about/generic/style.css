@@ -1,6 +1,6 @@
 body {
 	background-image: url('images/background.png');
-	background-repeat: no-repeat;
+	background-repeat: repeat-x;
 	font-size: 9pt;
 	background-color:#FFF;
 }
