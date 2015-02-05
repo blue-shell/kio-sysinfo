@@ -211,18 +211,18 @@ void kio_sysinfoProtocol::get( const KUrl & /*url*/ )
     }
 
     // battery info
-//     infoMessage( i18n( "Looking for battery and AC information..." ) );
-//     if ( batteryInfo() )
-//     {
-//         sysInfo += "<h2 id=\"battery\">" + i18n( "Battery Information" ) + "</h2>";
-//         sysInfo += "<table>";
-//         sysInfo += "<tr><td>" + i18n( "Battery present:" ) + "</td><td>" + m_info[BATT_IS_PLUGGED] + "</td></tr>";
-//         sysInfo += "<tr><td>" + i18nc( "battery state", "State:" ) + "</td><td>" + m_info[BATT_CHARGE_STATE] + "</td></tr>";
-//         sysInfo += "<tr><td>" + i18n( "Charge percent:" ) + "</td><td>" + m_info[BATT_CHARGE_PERC] + "</td></tr>";
-//         sysInfo += "<tr><td>" + i18n( "Rechargeable:" ) + "</td><td>" + m_info[BATT_IS_RECHARGEABLE] + "</td></tr>";
-//         sysInfo += "<tr><td>" + i18n( "AC plugged:" ) + "</td><td>" + m_info[AC_IS_PLUGGED] + "</td></tr>";
-//         sysInfo += "</table>";
-//     }
+    infoMessage( i18n( "Looking for battery and AC information..." ) );
+    if ( batteryInfo() )
+    {
+        sysInfo += "<h2 id=\"battery\">" + i18n( "Battery Information" ) + "</h2>";
+        sysInfo += "<table>";
+        sysInfo += "<tr><td>" + i18n( "Battery present:" ) + "</td><td>" + m_info[BATT_IS_PLUGGED] + "</td></tr>";
+        sysInfo += "<tr><td>" + i18nc( "battery state", "State:" ) + "</td><td>" + m_info[BATT_CHARGE_STATE] + "</td></tr>";
+        sysInfo += "<tr><td>" + i18n( "Charge percent:" ) + "</td><td>" + m_info[BATT_CHARGE_PERC] + "</td></tr>";
+        sysInfo += "<tr><td>" + i18n( "Rechargeable:" ) + "</td><td>" + m_info[BATT_IS_RECHARGEABLE] + "</td></tr>";
+        sysInfo += "<tr><td>" + i18n( "AC plugged:" ) + "</td><td>" + m_info[AC_IS_PLUGGED] + "</td></tr>";
+        sysInfo += "</table>";
+    }
 
     // more CPU info
     if ( !m_info[CPU_MODEL].isNull() )
