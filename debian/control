@@ -1,0 +1,27 @@
+Source: kio-sysinfo
+Priority: extra
+Maintainer: Rohan Garg <rohangarg@kubuntu.org>
+Build-Depends: debhelper (>= 8.0.0), cmake,
+ kde-workspace-dev,
+ shared-mime-info,
+ pkg-kde-tools
+Standards-Version: 3.9.3
+Section: libs
+Homepage: https://github.com/blue-shell/kio-sysinfo
+
+Package: kio-sysinfo
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: sysinfo kio slave
+ Sysinfo KIO slave to display information about the system in a browser
+
+Package: kio-sysinfo-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: kio-sysinfo (= ${binary:Version}), ${misc:Depends}
+Description: debugging symbols for kio-sysinfo
+ Sysinfo KIO slave to display information about the system in a browser
+ . 
+ This package contains the debugging symbols for kio-sysinfo

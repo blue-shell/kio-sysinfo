@@ -1,0 +1,60 @@
+kio-sysinfo (0.1-0ubuntu1+f89087e~ubuntu14.04.6) utopic; urgency=low
+
+  * Some fixes
+
+ -- Leszek Lesner <leszek@zevenos.com>  Thu, 05 Feb 2015 18:44:05 +0100
+
+kio-sysinfo (0.1-0ubuntu1+f89087e~ubuntu14.04.5) utopic; urgency=low
+
+  * Use the Plasma version when available
+  * Disable reload every 20 seconds
+
+ -- Leszek Lesner <leszek@zevenos.com>  Mon, 02 Feb 2015 18:39:40 +0100
+
+kio-sysinfo (0.1-0ubuntu1+f89087e~ubuntu14.04.4) trusty; urgency=low
+
+  * Build against trusty
+
+ -- Leszek Lesner <leszek@zevenos.com>  Fri, 25 Apr 2014 12:32:57 +0200
+
+kio-sysinfo (0.1-0ubuntu1+f89087e~ubuntu13.10.4) saucy; urgency=low
+
+  * Updated style to Netrunne RC version one
+
+ -- Leszek Lesner <leszek@zevenos.com>  Wed, 04 Dec 2013 17:04:15 +0100
+
+kio-sysinfo (0.1-0ubuntu1+f89087e~ubuntu13.10.3) saucy; urgency=low
+
+  * Updated style again
+
+ -- Leszek Lesner <leszek@zevenos.com>  Mon, 02 Dec 2013 11:39:19 +0100
+
+kio-sysinfo (0.1-0ubuntu1+f89087e~ubuntu13.10.2) saucy; urgency=low
+
+  * Updated style.css
+
+ -- Leszek Lesner <leszek@zevenos.com>  Tue, 05 Nov 2013 17:19:31 +0100
+
+kio-sysinfo (0.1-0ubuntu1+f89087e~ubuntu13.10.1) saucy; urgency=low
+
+  * Auto build.
+
+ -- Rohan Garg <rohan16garg@gmail.com>  Wed, 16 Oct 2013 09:37:03 +0000
+
+kio-sysinfo (0.1-0ubuntu1~ppa3) quantal; urgency=low
+
+  * No change rebuild
+
+ -- Rohan Garg <rohangarg@kubuntu.org>  Thu, 11 Oct 2012 06:10:41 +0530
+
+kio-sysinfo (0.1-0ubuntu1~ppa2) quantal; urgency=low
+
+  * Install file++
+
+ -- Rohan Garg <rohangarg@kubuntu.org>  Thu, 04 Oct 2012 21:14:43 +0100
+
+kio-sysinfo (0.1-0ubuntu1~ppa1) quantal; urgency=low
+
+  * Initial release
+
+ -- Rohan Garg <rohangarg@kubuntu.org>  Mon, 01 Oct 2012 21:37:34 +0100
