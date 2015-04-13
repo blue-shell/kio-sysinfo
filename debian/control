@@ -3,6 +3,7 @@ Priority: extra
 Maintainer: Rohan Garg <rohangarg@kubuntu.org>
 Build-Depends: debhelper (>= 8.0.0), cmake,
  libkdecore5,
+ kdelibs5-dev,
  shared-mime-info,
  pkg-kde-tools
 Standards-Version: 3.9.3
