@@ -751,7 +751,7 @@ void kio_sysinfoProtocol::osInfo()
 #elif defined(WITH_DEBIAN)
     m_info[ OS_SYSTEM ] = readFromFile( "/etc/debian_version" );
 #elif defined(WITH_UBUNTU)
-    m_info[ OS_SYSTEM ] = readFromFile ( "/etc/lsb-release", "DISTRIB_ID", "=" ) + " " + readFromFile ( "/etc/lsb-release", "DISTRIB_RELEASE", "=" );
+    m_info[ OS_SYSTEM ] = readFromFile ( "/etc/os-release", "NAME", "=" ) + " " + readFromFile ( "/etc/os-release", "VERSION", "=" );
 #else
     m_info[ OS_SYSTEM ] = i18nc( "Unknown operating system version", "Unknown" );
 #endif
