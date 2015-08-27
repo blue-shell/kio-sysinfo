@@ -5,9 +5,9 @@ install( FILES
     images/cpu.png
     images/dirs.png
     images/display.png
-#    images/hdd.png
-#    images/hwinfo.png
-#    images/inner-bcg.png
+    images/hdd.png
+    images/hwinfo.png
+    images/inner-bcg.png
     images/launch.png
     images/mem.png
     images/network.png
