@@ -128,6 +128,12 @@ private:
      * Gather battery / AC adapter status
      */
     bool batteryInfo();
+    
+    /**
+     * Helper function to return default hd icon
+     * @return hdimage with 32x32 pixels
+     */
+    QString hdicon() const;
 
     /**
      * Helper function to locate a KDE icon

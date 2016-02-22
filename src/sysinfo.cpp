@@ -417,7 +417,7 @@ QString kio_sysinfoProtocol::diskInfo()
 
             result += QString( "<tr><td rowspan=\"2\">%1</td><td><a href=\"%2\" title=\"%7\">%3</a></td>" \
                                "<td>%4</td><td>%5</td><td>%6</td><td rowspan=\"2\">%8</td></tr>\n" ).
-                      arg( icon( di.iconName, 32 ) ).arg( htmlQuote(media) ).arg( htmlQuote(di.label) ).arg( di.fsType ).
+                      arg( hdicon() ).arg( htmlQuote(media) ).arg( htmlQuote(di.label) ).arg( di.fsType ).
                       arg( di.total ? formattedUnit( di.total) : QString::null).
                       arg( di.mounted ? formattedUnit( di.avail ) : QString::null).
                       arg( htmlQuote( tooltip ) ).
@@ -671,7 +671,7 @@ bool kio_sysinfoProtocol::glInfo()
             m_info[GFX_3D_DRIVER] = i18n("Mesa");
         }
         m_info[GFX_3D_DRIVER] += " classic";
-    } else if (opengl_vendor.contains("ATI")) || opengl_vendor.contains("Advanced Micro Devices")) { /* Proprietary ATI */
+    } else if (opengl_vendor.contains("ATI") || opengl_vendor.contains("Advanced Micro Devices")) { /* Proprietary ATI */
         m_info[GFX_VENDOR] = GFX_VENDOR_ATI;
         m_info[GFX_MODEL] = opengl_renderer;
         m_info[GFX_3D_DRIVER] = "ATI";
@@ -729,6 +729,12 @@ bool kio_sysinfoProtocol::glInfo()
     prevresult = true;
     return true;
 #endif
+}
+
+QString kio_sysinfoProtocol::hdicon() const
+{
+    QString hdimagePath = "file://" + KStandardDirs::locate( "data", "sysinfo/about/images/hdd.png");
+    return QString( "<img src=\"%1\" width=\"32\" height=\"32\" valign=\"bottom\"/>").arg( hdimagePath );
 }
 
 QString kio_sysinfoProtocol::icon( const QString & name, int size ) const
