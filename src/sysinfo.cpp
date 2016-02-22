@@ -186,7 +186,7 @@ void kio_sysinfoProtocol::get( const KUrl & /*url*/ )
     sysInfo += "<h2 id=\"sysinfo\">" +i18n( "OS Information" ) + "</h2>";
     sysInfo += "<table>";
     sysInfo += "<tr><td>" + i18n( "OS:" ) +  "</td><td>" + htmlQuote(m_info[OS_SYSTEM]) + "</td></tr>";
-    sysInfo += "<tr><td>" + i18n( "System:" ) + "</td><td>" + htmlQuote(m_info[OS_SYSNAME]) + " " +
+    sysInfo += "<tr><td>" + i18n( "Kernel:" ) + "</td><td>" + htmlQuote(m_info[OS_SYSNAME]) + " " +
                htmlQuote(m_info[OS_RELEASE]) + " " + htmlQuote(m_info[OS_MACHINE]) + "</td></tr>";
 //     sysInfo += "<tr><td>" + i18n( "Current user:" ) + "</td><td>" + htmlQuote(m_info[OS_USER]) + "@"
 //                + htmlQuote(m_info[OS_HOSTNAME]) + "</td></tr>";
@@ -651,6 +651,9 @@ bool kio_sysinfoProtocol::glInfo()
         if (opengl_vendor.contains("R300")) {
             m_info[GFX_VENDOR] = GFX_VENDOR_ATI;
             m_info[GFX_3D_DRIVER] = "R300";
+        } else if (opengl_vendor.contains("R600")) {
+            m_info[GFX_VENDOR] = GFX_VENDOR_ATI;
+            m_info[GFX_3D_DRIVER] = "R600";
         } else if (opengl_vendor.contains("nouveau")) {
             m_info[GFX_VENDOR] = GFX_VENDOR_NVIDIA;
             m_info[GFX_3D_DRIVER] = "nouveau";
@@ -665,10 +668,10 @@ bool kio_sysinfoProtocol::glInfo()
             m_info[GFX_MODEL] = rx_r.cap(2);
             m_info[GFX_3D_DRIVER] = rx_r.cap(1);
         } else {
-            m_info[GFX_3D_DRIVER] = i18n("Unknown");
+            m_info[GFX_3D_DRIVER] = i18n("Mesa");
         }
         m_info[GFX_3D_DRIVER] += " classic";
-    } else if (opengl_vendor.contains("ATI")) { /* Proprietary ATI */
+    } else if (opengl_vendor.contains("ATI")) || opengl_vendor.contains("Advanced Micro Devices")) { /* Proprietary ATI */
         m_info[GFX_VENDOR] = GFX_VENDOR_ATI;
         m_info[GFX_MODEL] = opengl_renderer;
         m_info[GFX_3D_DRIVER] = "ATI";
@@ -690,7 +693,10 @@ bool kio_sysinfoProtocol::glInfo()
     /* Using HD (when possible) should gave the best result */
     if (hd) {
         m_info[GFX_VENDOR] = hd->vendor.name;
-        m_info[GFX_MODEL] = hd->device.name;
+        /* GFX_MODEL maybe empty with newer models */
+        if (!!hd->device.name) {
+            m_info[GFX_MODEL] = hd->device.name;
+        }
     }
 #endif
 
