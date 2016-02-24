@@ -232,11 +232,16 @@ void kio_sysinfoProtocol::get( const KUrl & /*url*/ )
     {
         sysInfo += "<h2 id=\"battery\">" + i18n( "Battery Information" ) + "</h2>";
         sysInfo += "<table>";
-        sysInfo += "<tr><td>" + i18n( "Battery present:" ) + "</td><td>" + m_info[BATT_IS_PLUGGED] + "</td></tr>";
-        sysInfo += "<tr><td>" + i18nc( "battery state", "State:" ) + "</td><td>" + m_info[BATT_CHARGE_STATE] + "</td></tr>";
-        sysInfo += "<tr><td>" + i18n( "Charge percent:" ) + "</td><td>" + m_info[BATT_CHARGE_PERC] + "</td></tr>";
-        sysInfo += "<tr><td>" + i18n( "Rechargeable:" ) + "</td><td>" + m_info[BATT_IS_RECHARGEABLE] + "</td></tr>";
-        sysInfo += "<tr><td>" + i18n( "AC plugged:" ) + "</td><td>" + m_info[AC_IS_PLUGGED] + "</td></tr>";
+        if (!m_info[BATT_IS_PLUGGED].isEmpty())
+            sysInfo += "<tr><td>" + i18n( "Battery present:" ) + "</td><td>" + m_info[BATT_IS_PLUGGED] + "</td></tr>";
+        if (!m_info[BATT_CHARGE_STATE].isEmpty())
+            sysInfo += "<tr><td>" + i18nc( "battery state", "State:" ) + "</td><td>" + m_info[BATT_CHARGE_STATE] + "</td></tr>";
+        if (!m_info[BATT_CHARGE_PERC].isEmpty())
+            sysInfo += "<tr><td>" + i18n( "Charge percent:" ) + "</td><td>" + m_info[BATT_CHARGE_PERC] + "</td></tr>";
+        if (!m_info[BATT_IS_RECHARGEABLE].isEmpty())
+            sysInfo += "<tr><td>" + i18n( "Rechargeable:" ) + "</td><td>" + m_info[BATT_IS_RECHARGEABLE] + "</td></tr>";
+        if (!m_info[AC_IS_PLUGGED].isEmpty())
+            sysInfo += "<tr><td>" + i18n( "AC plugged:" ) + "</td><td>" + m_info[AC_IS_PLUGGED] + "</td></tr>";
         sysInfo += "</table>";
     }
 
