@@ -188,22 +188,26 @@ void kio_sysinfoProtocol::get( const KUrl & /*url*/ )
     sysInfo += "<tr><td>" + i18n( "OS:" ) +  "</td><td>" + htmlQuote(m_info[OS_SYSTEM]) + "</td></tr>";
     sysInfo += "<tr><td>" + i18n( "Kernel:" ) + "</td><td>" + htmlQuote(m_info[OS_SYSNAME]) + " " +
                htmlQuote(m_info[OS_RELEASE]) + " " + htmlQuote(m_info[OS_MACHINE]) + "</td></tr>";
-//     sysInfo += "<tr><td>" + i18n( "Current user:" ) + "</td><td>" + htmlQuote(m_info[OS_USER]) + "@"
-//                + htmlQuote(m_info[OS_HOSTNAME]) + "</td></tr>";
-    //TODO: Don't hardcode the filename here
-    const QString filePath("/usr/share/xsessions/plasma.desktop");
-    KDesktopFile desktopFile(filePath);
-    QString plasmaVersion = desktopFile.desktopGroup().readEntry("X-KDE-PluginInfo-Version", KDE::versionString());
-    sysInfo += "<tr><td>" + i18n( "Plasma:" ) + "</td><td>" + plasmaVersion + "</td></tr>";
+
     if ( kdeInfo() )
     {
-        if (!m_info[KF5_VERSION].isNull())
+        if (!m_info[QT5_VERSION].isNull())
+            sysInfo += "<tr><td>" + i18n( "Qt:" ) + "</td><td>" + htmlQuote(m_info[QT5_VERSION]) + "</td></tr>";
+        
+	//TODO: Don't hardcode the filename here
+	const QString filePath("/usr/share/xsessions/plasma.desktop");
+	KDesktopFile desktopFile(filePath);
+	QString plasmaVersion = desktopFile.desktopGroup().readEntry("X-KDE-PluginInfo-Version", KDE::versionString());
+	sysInfo += "<tr><td>" + i18n( "Plasma:" ) + "</td><td>" + plasmaVersion + "</td></tr>";
+	
+	if (!m_info[KF5_VERSION].isNull())
             sysInfo += "<tr><td>" + i18n( "KDE Frameworks:" ) + "</td><td>" + htmlQuote(m_info[KF5_VERSION]) + "</td></tr>";
         if (!m_info[KDEAPPS_VERSION].isNull())
             sysInfo += "<tr><td>" + i18n( "KDE Applications:" ) + "</td><td>" + htmlQuote(m_info[KDEAPPS_VERSION]) + "</td></tr>";
-        if (!m_info[QT5_VERSION].isNull())
-            sysInfo += "<tr><td>" + i18n( "Qt:" ) + "</td><td>" + htmlQuote(m_info[QT5_VERSION]) + "</td></tr>";
     }
+    
+//     sysInfo += "<tr><td>" + i18n( "Current user:" ) + "</td><td>" + htmlQuote(m_info[OS_USER]) + "@"
+//                + htmlQuote(m_info[OS_HOSTNAME]) + "</td></tr>"
     sysInfo += "</table>";
     
     // Display Info START ////////
