@@ -98,7 +98,8 @@ public:
         SYSINFO_LAST,
         KF5_VERSION,
         QT5_VERSION,
-        KDEAPPS_VERSION
+        KDEAPPS_VERSION,
+        WAYLAND_VER
     };
 
 private:
@@ -131,6 +132,11 @@ private:
      * Gather KF5, Qt5 and KDE Apps info
      */
     bool kdeInfo();
+    
+    /**
+     * Gather Wayland info
+     */
+    void waylandInfo();
 
     /**
      * Gather battery / AC adapter status

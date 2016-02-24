@@ -205,6 +205,8 @@ void kio_sysinfoProtocol::get( const KUrl & /*url*/ )
             sysInfo += "<tr><td>" + i18n( "Qt:" ) + "</td><td>" + htmlQuote(m_info[QT5_VERSION]) + "</td></tr>";
     }
     sysInfo += "</table>";
+    
+    // Display Info START ////////
 
     // OpenGL info
     if ( glInfo() )
@@ -216,8 +218,13 @@ void kio_sysinfoProtocol::get( const KUrl & /*url*/ )
         sysInfo += "<tr><td>" + i18n( "2D driver:" ) + "</td><td>" + htmlQuote(m_info[GFX_2D_DRIVER]) + "</td></tr>";
         if (!m_info[GFX_3D_DRIVER].isNull())
             sysInfo += "<tr><td>" + i18n( "3D driver:" ) + "</td><td>" + htmlQuote(m_info[GFX_3D_DRIVER]) + "</td></tr>";
-        sysInfo += "</table>";
     }
+    waylandInfo();
+    if (!m_info[WAYLAND_VER].isNull())
+            sysInfo += "<tr><td>" + i18n( "Wayland:" ) + "</td><td>" + htmlQuote(m_info[WAYLAND_VER]) + "</td></tr>";
+    sysInfo += "</table>";
+    
+    // Display Info END /////////
 
     // battery info
     infoMessage( i18n( "Looking for battery and AC information..." ) );
@@ -790,6 +797,15 @@ bool kio_sysinfoProtocol::kdeInfo()
     
     return true;
 }    
+
+void kio_sysinfoProtocol::waylandInfo()
+{
+    QFile file("/usr/include/wayland-version.h");
+    if (file.exists()) {
+        m_info[WAYLAND_VER] = readFromFile ( "/usr/include/wayland-version.h", "#define WAYLAND_VERSION", "\"" );
+    }
+}
+
 
 QString kio_sysinfoProtocol::hdicon() const
 {
