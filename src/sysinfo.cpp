@@ -195,6 +195,15 @@ void kio_sysinfoProtocol::get( const KUrl & /*url*/ )
     KDesktopFile desktopFile(filePath);
     QString plasmaVersion = desktopFile.desktopGroup().readEntry("X-KDE-PluginInfo-Version", KDE::versionString());
     sysInfo += "<tr><td>" + i18n( "Plasma:" ) + "</td><td>" + plasmaVersion + "</td></tr>";
+    if ( kdeInfo() )
+    {
+        if (!m_info[KF5_VERSION].isNull())
+            sysInfo += "<tr><td>" + i18n( "KDE Frameworks:" ) + "</td><td>" + htmlQuote(m_info[KF5_VERSION]) + "</td></tr>";
+        if (!m_info[KDEAPPS_VERSION].isNull())
+            sysInfo += "<tr><td>" + i18n( "KDE Applications:" ) + "</td><td>" + htmlQuote(m_info[KDEAPPS_VERSION]) + "</td></tr>";
+        if (!m_info[QT5_VERSION].isNull())
+            sysInfo += "<tr><td>" + i18n( "Qt:" ) + "</td><td>" + htmlQuote(m_info[QT5_VERSION]) + "</td></tr>";
+    }
     sysInfo += "</table>";
 
     // OpenGL info
@@ -730,6 +739,57 @@ bool kio_sysinfoProtocol::glInfo()
     return true;
 #endif
 }
+
+bool kio_sysinfoProtocol::kdeInfo() 
+{
+    /* Grab KF5 & Qt5 info */
+    QString qt5_version = QString::null;
+    QString kf5_version = QString::null;
+    /* FIXME: unsafe, replace popen with QProcess? */
+    FILE *fd = popen("kf5-config --version", "r");
+    if (fd) {
+        QTextStream is(fd);
+        while (!is.atEnd()) {
+            QString line = is.readLine();
+            if (line.startsWith("Qt:")) {
+                qt5_version = line.section(':', 1, 1);
+            } else if (line.startsWith("KDE Frameworks:")) {
+                kf5_version = line.section(':', 1, 1);
+            }
+        }
+    }
+    if (fd) {
+        /* FIXME: this is hack to do not let QTextStream touch fd after closing
+         * it. Prevents whole kio_sysinfo from crashing */
+        pclose(fd);
+    }
+    
+    m_info[QT5_VERSION] = qt5_version;
+    m_info[KF5_VERSION] = kf5_version;
+    
+    /* Grab KF5 & Qt5 info */
+    QString kdeapps_version = QString::null;
+    /* FIXME: unsafe, replace popen with QProcess? */
+    FILE *fd1 = popen("dolphin --version", "r");
+    if (fd) {
+        QTextStream is(fd1);
+        while (!is.atEnd()) {
+            QString line = is.readLine();
+            if (line.startsWith("dolphin")) {
+                kdeapps_version = line.section(' ', 1, 1);
+            }
+        }
+    }
+    if (fd1) {
+        /* FIXME: this is hack to do not let QTextStream touch fd after closing
+         * it. Prevents whole kio_sysinfo from crashing */
+        pclose(fd1);
+    }
+    
+    m_info[KDEAPPS_VERSION] = kdeapps_version;
+    
+    return true;
+}    
 
 QString kio_sysinfoProtocol::hdicon() const
 {

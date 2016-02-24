@@ -95,7 +95,10 @@ public:
         BATT_CHARGE_STATE,
         BATT_IS_RECHARGEABLE,
         AC_IS_PLUGGED,          // see Solid::AcAdapter
-        SYSINFO_LAST
+        SYSINFO_LAST,
+        KF5_VERSION,
+        QT5_VERSION,
+        KDEAPPS_VERSION
     };
 
 private:
@@ -123,6 +126,11 @@ private:
      * Gather basic OpenGL info
      */
     bool glInfo();
+    
+    /**
+     * Gather KF5, Qt5 and KDE Apps info
+     */
+    bool kdeInfo();
 
     /**
      * Gather battery / AC adapter status
